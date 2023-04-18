@@ -1,7 +1,5 @@
 @extends('template')
 
 @section('content')
-    <div class="container">
-        <p>Home page works!</p>
-    </div>
+    <h1 class="text-3xl font-bold underline">Home page works!</h1>
 @endsection
