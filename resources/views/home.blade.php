@@ -1,6 +1,7 @@
 @extends('template')
+
 @section('content')
     <div class="container">
-        <p>Welcome page works!</p>
+        <p>Home page works!</p>
     </div>
 @endsection
