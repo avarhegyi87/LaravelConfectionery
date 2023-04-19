@@ -58,9 +58,7 @@
             </select>
     </div>
         <div class="mb-6">
-            <button
-                class="bg-laravel text-black rounded py-2 px-4 hover:bg-black text-white"
-            >
+            <button class=" bg-laravel rounded py-2 px-4 hover:bg-black text-white" >
                 Update confection
             </button>
     
