@@ -34,7 +34,7 @@ class PageController extends Controller
 
     public function type() 
     {
-        return view('database.type');
+        return view('database.type', ['confections' => Confection::get()]);
     }
 
     public function prize() 
