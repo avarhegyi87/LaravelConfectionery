@@ -68,4 +68,24 @@ class PageController extends Controller
         }
         return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceunit]);
     }
+
+    public function edit(Confection $confection){
+
+        return view('database.edit', ['confection' => $confection]);
+    }
+
+    public function update(Request $request, Confection $confection){
+
+        $formFields = $request->validate([
+            'cname'=>'required',
+            'type'=>'required',
+            'prizewinning'=>'required',
+        ]);
+
+       
+        $confection->update($formFields);
+        
+
+        return back()->with('message', 'Confection updated succesfully!');
+    }
 }

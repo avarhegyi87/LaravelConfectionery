@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Confection extends Model
 {
+    protected $fillable = [ 'cname', 'type', 'prizewinning'];
     public function contents()
     {
         return $this->hasMany(Content::class, 'confid');
