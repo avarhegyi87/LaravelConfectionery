@@ -22,4 +22,6 @@ Route::get('/database/free', [PageController::class, 'free'])->name('free');
 Route::get('/database/prize', [PageController::class, 'type'])->name('type');
 Route::get('/database/type', [PageController::class, 'prize'])->name('prize');
 Route::get('/database/{confection}', [PageController::class, 'show'])->name('show');
+Route::get('/database/{confection}/edit', [PageController::class, 'edit'])->name('edit');
+Route::put('/database/{confection}', [PageController::class, 'update'])->name('auth');
 Route::get('/database', [PageController::class, 'database'])->name('database');
