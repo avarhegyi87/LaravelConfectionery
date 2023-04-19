@@ -8,6 +8,6 @@ class Price extends Model
 {
     public function confectionery()
     {
-        return $this->belongsTo('App\Models\Confection');
+        return $this->belongsTo(Confection::class, 'id');
     }
 }
