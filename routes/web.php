@@ -21,4 +21,5 @@ Route::get('/database/all', [PageController::class, 'all'])->name('all');
 Route::get('/database/free', [PageController::class, 'free'])->name('free');
 Route::get('/database/prize', [PageController::class, 'type'])->name('type');
 Route::get('/database/type', [PageController::class, 'prize'])->name('prize');
+Route::get('/database/{confection}', [PageController::class, 'show'])->name('show');
 Route::get('/database', [PageController::class, 'database'])->name('database');

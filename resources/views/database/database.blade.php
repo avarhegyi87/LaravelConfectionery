@@ -1,3 +1,7 @@
+@extends('template')
+
+@section('content')
+
 <h1>How would you like to list database items?</h1>
 
 
@@ -19,3 +23,4 @@
     <div class="mb-6">
             <a href="/database/free" class="text-black ml-4"> choose free from allergenic </a>
     </div>
+@endsection

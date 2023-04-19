@@ -24,7 +24,7 @@ class PageController extends Controller
 
     public function all() 
     {
-        return view('database.all');
+        return view('database.all', ['confections' => Confection::orderBy('cname')->paginate(10)]);
     }
 
     public function free() 
@@ -40,5 +40,32 @@ class PageController extends Controller
     public function prize() 
     {
         return view('database.prize');
+    }
+    public function show(Confection $confection)
+    {
+        $conf = $confection->load('contents', 'prices');
+        $free = 'It is free from: ';
+        $priceunit = 'The confectionery can be bought for: ';
+        $prize='no';
+        if ($confection->prizewinning == 1) $prize='yes';
+
+        foreach ($confection->prices as $value) 
+        {
+            
+                $priceunit = $priceunit. ' price: ' .$value->price. ', with unit: ' .$value->unit. ';';
+            
+        }
+        foreach ($confection->contents as $value) 
+        {
+            if(isset($value))
+            {
+                $free = $free. ' ' .$value->free;
+            }
+            else
+            {
+                $free = null;
+            }
+        }
+        return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceunit]);
     }
 }
