@@ -8,11 +8,11 @@ class Confection extends Model
 {
     public function contents()
     {
-        return $this->hasMany('App\Model\Content');
+        return $this->hasMany(Content::class, 'confid');
     }
 
     public function prices()
     {
-        return $this->hasMany('App\Model\Price');
+        return $this->hasMany(Price::class, 'confid');
     }
 }
