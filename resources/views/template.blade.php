@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite('resources/css/app.css')
 
     <title>ConfectioneryApp</title>
 
@@ -21,10 +20,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
-<body>
+<body class="ml-12 mr-12">
     @include('_includes.nav.topnav')
 
     @yield('content')
