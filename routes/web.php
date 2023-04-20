@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/home', [PageController::class, 'index'])->name('index');
 Route::get('/contact', [PageController::class, 'contactUs'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store']);
+Route::get('/messageboard', [PageController::class, 'messageBoard'])->name('messageboard');
 Route::get('/database/all', [PageController::class, 'all'])->name('all');
 Route::get('/database/free', [PageController::class, 'free'])->name('free');
 Route::get('/database/type', [PageController::class, 'type'])->name('type');

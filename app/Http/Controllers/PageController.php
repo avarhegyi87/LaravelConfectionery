@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Confection;
+use App\Models\Message;
 
 class PageController extends Controller
 {
@@ -17,27 +18,33 @@ class PageController extends Controller
         return view('contact');
     }
 
-    public function database() 
+    public function messageBoard()
+    {
+        $messages = Message::orderBy('created_at', 'desc')->paginate(5);
+        return view('messageboard')->with('messages', $messages);
+    }
+
+    public function database()
     {
         return view('database.database');
     }
 
-    public function all() 
+    public function all()
     {
         return view('database.all', ['confections' => Confection::orderBy('cname')->paginate(10)]);
     }
 
-    public function free() 
+    public function free()
     {
         return view('database.free');
     }
 
-    public function type() 
+    public function type()
     {
         return view('database.type', ['confections' => Confection::get()]);
     }
 
-    public function prize() 
+    public function prize()
     {
         return view('database.prize');
     }
@@ -49,13 +56,13 @@ class PageController extends Controller
         $prize='no';
         if ($confection->prizewinning == 1) $prize='yes';
 
-        foreach ($confection->prices as $value) 
+        foreach ($confection->prices as $value)
         {
-            
+
                 $priceunit = $priceunit. ' price: ' .$value->price. ', with unit: ' .$value->unit. ';';
-            
+
         }
-        foreach ($confection->contents as $value) 
+        foreach ($confection->contents as $value)
         {
             if(isset($value))
             {
@@ -82,9 +89,9 @@ class PageController extends Controller
             'prizewinning'=>'required',
         ]);
 
-       
+
         $confection->update($formFields);
-        
+
 
         return back()->with('message', 'Confection updated succesfully!');
     }
