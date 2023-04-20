@@ -36,12 +36,21 @@ class PageController extends Controller
 
     public function free()
     {
-        return view('database.free');
+        $conf = Confection::get()->load('contents', 'prices');
+        return view('database.free', ['confections' => $conf, 'freeFrom' => '']);
     }
 
     public function type()
     {
-        return view('database.type', ['confections' => Confection::get()]);
+        $confections = Confection::get();
+        $grouped = $confections -> groupBy('type');
+        $types[] = '';
+        foreach ($grouped as $value)
+        {
+            array_push($types , $value[0]->type);
+        }
+
+        return view('database.type', ['types' => $types]);
 
     }
     public function typeList()
@@ -52,7 +61,7 @@ class PageController extends Controller
 
     public function prize()
     {
-        return view('database.prize');
+        return view('database.prize', ['confections' => Confection::get()]);
     }
     public function show(Confection $confection)
     {
