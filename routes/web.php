@@ -23,6 +23,7 @@ Route::get('/messageboard', [PageController::class, 'messageBoard'])->name('mess
 Route::get('/database/all', [PageController::class, 'all'])->name('all');
 Route::get('/database/free', [PageController::class, 'free'])->name('free');
 Route::get('/database/type', [PageController::class, 'type'])->name('type');
+Route::put('/database/type/list', [PageController::class, 'typeList'])->name('typeList');
 Route::get('/database/prize', [PageController::class, 'prize'])->name('prize');
 Route::get('/database/{confection}', [PageController::class, 'show'])->name('show');
 Route::get('/database/{confection}/edit', [PageController::class, 'edit'])->name('edit');

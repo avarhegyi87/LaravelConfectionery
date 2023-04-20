@@ -42,6 +42,12 @@ class PageController extends Controller
     public function type()
     {
         return view('database.type', ['confections' => Confection::get()]);
+
+    }
+    public function typeList()
+    {
+        return view('database.typeList', ['confections' => Confection::get(), 'selectedType' => $_POST['type']]);
+
     }
 
     public function prize()
