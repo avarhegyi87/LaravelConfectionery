@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Confection;
 use App\Models\Message;
+use App\Models\Blog;
 
 class PageController extends Controller
 {
@@ -22,11 +23,6 @@ class PageController extends Controller
     {
         $messages = Message::orderBy('created_at', 'desc')->paginate(5);
         return view('messageboard')->with('messages', $messages);
-    }
-
-    public function database()
-    {
-        return view('database.database');
     }
 
     public function all()
@@ -109,5 +105,41 @@ class PageController extends Controller
 
 
         return back()->with('message', 'Confection updated succesfully!');
+    }
+
+    public function blogList()
+    {
+        return view('blog.list', ['blogs' => Blog::orderBy('heading')->paginate(10)]);
+
+    }
+
+    public function blogShow(Blog $blog)
+    {
+        return view('blog.show', ['blog' => $blog]);
+    }
+    public function editBlog(Blog $blog){
+
+        return view('blog.edit', ['blog' => $blog]);
+    }
+
+    public function updateBlog(Request $request, Blog $blog){
+
+        $formFields = $request->validate([
+            'name'=>'required',
+            'heading'=>'required',
+            'text'=>'required',
+        ]);
+
+
+        $blog->update($formFields);
+
+
+        return back()->with('message', 'Post updated succesfully!');
+    }
+
+    public function deleteBlog(Blog $blog){
+
+        $blog->delete();
+        return redirect('/')->with('message', 'Blog deleted succesfully!');
     }
 }

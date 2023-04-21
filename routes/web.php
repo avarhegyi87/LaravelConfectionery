@@ -27,5 +27,9 @@ Route::put('/database/type/list', [PageController::class, 'typeList'])->name('ty
 Route::get('/database/prize', [PageController::class, 'prize'])->name('prize');
 Route::get('/database/{confection}', [PageController::class, 'show'])->name('show');
 Route::get('/database/{confection}/edit', [PageController::class, 'edit'])->name('edit');
-Route::put('/database/{confection}', [PageController::class, 'update'])->name('auth');
-Route::get('/database', [PageController::class, 'database'])->name('database');
+Route::put('/database/{confection}', [PageController::class, 'update'])->name('update');
+Route::get('/blog/list', [PageController::class, 'blogList'])->name('blogList');
+Route::get('/blog/{blog}', [PageController::class, 'blogShow'])->name('blogShow');
+Route::get('/blog/{blog}/edit', [PageController::class, 'editBlog'])->name('editBlog');
+Route::put('/blog/{blog}', [PageController::class, 'updateBlog'])->name('updateBlog');
+Route::delete('/blog/{blog}', [PageController::class, 'deleteBlog'])->name('deleteBlog');
