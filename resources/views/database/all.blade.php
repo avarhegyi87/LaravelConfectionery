@@ -12,6 +12,6 @@
 
     </div>
     <div class="mt-6 p-4">
-        {{ $confections->links() }}
+        {{ $confections->onEachSide(1)->links() }}
     </div>
 @endsection
