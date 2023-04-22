@@ -33,7 +33,16 @@ class PageController extends Controller
     public function free()
     {
         $conf = Confection::get()->load('contents', 'prices');
-        return view('database.free', ['confections' => $conf, 'freeFrom' => '']);
+        $freeids[]=0;
+        foreach ($conf as $confection){
+            foreach ($confection->contents as $value){
+            if(isset($value)){
+                if (!in_array($value->confid, $freeids)){
+                    array_push($freeids, $value->confid);
+            }}
+            }
+        }
+        return view('database.free', ['confections' => $conf, 'freeids' => $freeids]);
     }
 
     public function type()
@@ -130,5 +139,22 @@ class PageController extends Controller
 
         $blog->delete();
         return redirect('/')->with('message', 'Blog deleted succesfully!');
+    }
+
+    public function createBlog(){
+
+        return view('blog.create');
+    }
+
+    public function store(Request $request){
+        $formFields = $request->validate([
+            'name'=>'required',
+            'heading'=>'required',
+            'text'=>'required'
+        ]);
+
+        Blog::create($formFields);
+
+        return redirect('/')->with('message', 'Posted succesfully!');
     }
 }
