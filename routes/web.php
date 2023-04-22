@@ -29,6 +29,8 @@ Route::get('/database/{confection}', [PageController::class, 'show'])->name('sho
 Route::get('/database/{confection}/edit', [PageController::class, 'edit'])->name('edit');
 Route::put('/database/{confection}', [PageController::class, 'update'])->name('update');
 Route::get('/blog/list', [PageController::class, 'blogList'])->name('blogList');
+Route::get('/blog/create', [PageController::class, 'createBlog'])->name('createBlog');
+Route::post('/blog', [PageController::class, 'store'])->name('store');
 Route::get('/blog/{blog}', [PageController::class, 'blogShow'])->name('blogShow');
 Route::get('/blog/{blog}/edit', [PageController::class, 'editBlog'])->name('editBlog');
 Route::put('/blog/{blog}', [PageController::class, 'updateBlog'])->name('updateBlog');
