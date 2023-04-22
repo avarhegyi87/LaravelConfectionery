@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Confection;
 use App\Models\Message;
 use App\Models\Blog;
+use App\Models\Gallery;
 
 class PageController extends Controller
 {
@@ -36,10 +37,13 @@ class PageController extends Controller
         $freeids[]=0;
         foreach ($conf as $confection){
             foreach ($confection->contents as $value){
-            if(isset($value)){
-                if (!in_array($value->confid, $freeids)){
-                    array_push($freeids, $value->confid);
-            }}
+                if(isset($value))
+                {
+                    if (!in_array($value->confid, $freeids))
+                    {
+                        array_push($freeids, $value->confid);
+                    }
+                }
             }
         }
         return view('database.free', ['confections' => $conf, 'freeids' => $freeids]);
@@ -146,7 +150,7 @@ class PageController extends Controller
         return view('blog.create');
     }
 
-    public function store(Request $request){
+    public function storeBlog(Request $request){
         $formFields = $request->validate([
             'name'=>'required',
             'heading'=>'required',
@@ -157,4 +161,47 @@ class PageController extends Controller
 
         return redirect('/')->with('message', 'Posted succesfully!');
     }
+
+    public function galleryIndex()
+    {
+        return view('gallery.index');
+    }
+
+    public function createGallery()
+    {
+        return view('gallery.create');
+    }
+
+    public function storeGallery(Request $request)
+    {
+        $formFields = $request->validate([
+            'title'=>'required'
+        ]);
+
+        if($request->hasFile('image'))
+        {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        Gallery::create($formFields);
+
+        return redirect('/')->with('message', 'Posted succesfully!');
+    }
+
+    public function galleryShow(Gallery $gallery)
+    {
+        return view('gallery.show', ['gallery' => $gallery]);
+    }
+
+    public function editGallery(Gallery $gallery)
+    {
+        return view('gallery.edit');
+    }
+
+    public function deleteGallery(Gallery $gallery)
+    {
+        $gallery->delete();
+        return redirect('/')->with('message', 'Element deleted succesfully!');
+    }
+
 }
