@@ -39,20 +39,17 @@ class PageController extends Controller
     public function type()
     {
         $confections = Confection::get();
-        $grouped = $confections -> groupBy('type');
+        $grouped = $confections->groupBy('type');
         $types[] = '';
-        foreach ($grouped as $value)
-        {
-            array_push($types , $value[0]->type);
+        foreach ($grouped as $value) {
+            array_push($types, $value[0]->type);
         }
 
         return view('database.type', ['types' => $types]);
-
     }
     public function typeList()
     {
         return view('database.typeList', ['confections' => Confection::get(), 'selectedType' => $_POST['type']]);
-
     }
 
     public function prize()
@@ -64,40 +61,32 @@ class PageController extends Controller
         $conf = $confection->load('contents', 'prices');
         $free = 'It is free from: ';
         $priceunit = 'The confectionery can be bought for: ';
-        $prize='no';
-        if ($confection->prizewinning == 1) $prize='yes';
+        $prize = 'no';
+        if ($confection->prizewinning === 1) $prize = 'yes';
 
-        foreach ($confection->prices as $value)
-        {
+        foreach ($confection->prices as $value) {
 
-                $priceunit = $priceunit. ' price: ' .$value->price. ', with unit: ' .$value->unit. ';';
-
+            $priceunit = $priceunit . ' price: ' . $value->price . ', with unit: ' . $value->unit . ';';
         }
-        foreach ($confection->contents as $value)
-        {
-            if(isset($value))
-            {
-                $free = $free. ' ' .$value->free;
-            }
-            else
-            {
-                $free = null;
-            }
+        foreach ($confection->contents as $value) {
+            $free = $value ? $free . ' ' . $value->free : null;
         }
         return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceunit]);
     }
 
-    public function edit(Confection $confection){
+    public function edit(Confection $confection)
+    {
 
         return view('database.edit', ['confection' => $confection]);
     }
 
-    public function update(Request $request, Confection $confection){
+    public function update(Request $request, Confection $confection)
+    {
 
         $formFields = $request->validate([
-            'cname'=>'required',
-            'type'=>'required',
-            'prizewinning'=>'required',
+            'cname' => 'required',
+            'type' => 'required',
+            'prizewinning' => 'required',
         ]);
 
 

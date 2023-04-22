@@ -26,9 +26,7 @@ class ConfectionerySeeder extends Seeder
             $values = explode("\t", $content);
 
             if (!isset($columns)) {
-                $columns = array_map(function ($value) {
-                    return str_replace(["\r", "\n"], '', $value);
-                }, $values);
+                $columns = array_map(fn ($value) => str_replace(["\r", "\n"], '', $value), $values);
             } else {
                 $data = array_combine($columns, $values);
                 DB::table($tableName)->insert($data);

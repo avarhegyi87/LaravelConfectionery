@@ -35,10 +35,10 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
     </script>
 
-    <footer
+    {{-- <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
         <p class="ml-2">Adam Varhegyi-Milos & Albert Csabai 2023</p>
-    </footer>
+    </footer> --}}
 
     <x-flash-message />
 </body>
