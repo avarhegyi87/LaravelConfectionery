@@ -8,13 +8,13 @@
             </h2>
         </header>
 
-        <form method="POST" action="/gallery/{{$gallery->id}}" enctype="multipart/form-data">
+        <form method="POST" action="/gallery/{{ $gallery->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Title</label>
                 <input type="textarea" class="border border-gray-200 rounded p-2 w-full" name="title"
-                    value="{{$gallery->title}}" />
+                    value="{{ $gallery->title }}" />
                 @error('title')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -24,19 +24,13 @@
                 <label for="image" class="inline-block text-lg mb-2">
                     Image
                 </label>
-                <input
-                    type="file"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="image"
-                />
-                <img
-                    class="w-48 mr-6 mb-6"
-                    src="{{$gallery->image ? asset('storage/' . $gallery->image) : asset('/images/no-image.png')}}"
-                    alt=""
-                />
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="image" />
+                <img class="w-48 mr-6 mb-6"
+                    src="{{ $gallery->image ? asset('storage/' . $gallery->image) : asset('/images/no-image.png') }}"
+                    alt="" />
                 @error('image')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
-               @enderror
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-6">
@@ -44,7 +38,7 @@
                     Edit element
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="{{ route('galleryIndex') }}" class="text-black ml-4"> Back </a>
             </div>
         </form>
     </x-card>
