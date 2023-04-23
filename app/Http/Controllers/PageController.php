@@ -107,7 +107,7 @@ class PageController extends Controller
         $confection->update($formFields);
 
 
-        return back()->with('message', 'Confection updated succesfully!');
+        return back()->with('message', 'Confection updated successfully!');
     }
 
     public function blogList()
@@ -137,13 +137,13 @@ class PageController extends Controller
         $blog->update($formFields);
 
 
-        return back()->with('message', 'Post updated succesfully!');
+        return back()->with('message', 'Post updated successfully!');
     }
 
     public function deleteBlog(Blog $blog){
 
         $blog->delete();
-        return redirect('/')->with('message', 'Blog deleted succesfully!');
+        return redirect('/')->with('message', 'Blog deleted successfully!');
     }
 
     public function createBlog(){
@@ -160,7 +160,7 @@ class PageController extends Controller
 
         Blog::create($formFields);
 
-        return redirect('/')->with('message', 'Posted succesfully!');
+        return redirect('/')->with('message', 'Posted successfully!');
     }
 
     public function galleryIndex()
@@ -187,7 +187,7 @@ class PageController extends Controller
 
         Image::create($formFields);
 
-        return redirect('/')->with('message', 'Posted succesfully!');
+        return redirect('/')->with('message', 'Posted successfully!');
     }
 
     public function galleryShow(Image $gallery)
@@ -217,7 +217,7 @@ class PageController extends Controller
         }
         $image->update($formFields);
 
-        return back()->with('message', 'Element updated succesfully!');
+        return back()->with('message', 'Element updated successfully!');
     }
 
 }
