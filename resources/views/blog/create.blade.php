@@ -40,7 +40,7 @@
                     Create post
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="{{ route('blogList') }}" class="text-black ml-4"> Back </a>
             </div>
         </form>
     </x-card>

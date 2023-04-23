@@ -35,17 +35,17 @@ class PageController extends Controller
     public function free()
     {
         $conf = Confection::get()->load('contents', 'prices');
-        $freeids[] = 0;
+        $freeIds[] = 0;
         foreach ($conf as $confection) {
             foreach ($confection->contents as $value) {
                 if (isset($value)) {
-                    if (!in_array($value->confid, $freeids)) {
-                        array_push($freeids, $value->confid);
+                    if (!in_array($value->confid, $freeIds)) {
+                        array_push($freeIds, $value->confid);
                     }
                 }
             }
         }
-        return view('database.free', ['confections' => $conf, 'freeids' => $freeids]);
+        return view('database.free', ['confections' => $conf, 'freeids' => $freeIds]);
     }
 
     public function type()
@@ -73,19 +73,19 @@ class PageController extends Controller
     {
         $conf = $confection->load('contents', 'prices');
         $free = 'It is free from: ';
-        $priceunit = 'The confectionery can be bought for: ';
+        $priceUnit = 'The confectionery can be bought for: ';
         $prize = 'no';
         if ($confection->prizewinning === 1) $prize = 'yes';
 
         foreach ($confection->prices as $value) {
-            $priceunit = $priceunit . ' price: ' . $value->price . ', with unit: ' . $value->unit . ';';
+            $priceUnit = $priceUnit . ' price: ' . $value->price . ', with unit: ' . $value->unit . ';';
         }
 
         foreach ($confection->contents as $value) {
             $free = $value ? $free . ' ' . $value->free : null;
         }
 
-        return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceunit]);
+        return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceUnit]);
     }
 
     public function edit(Confection $confection)
@@ -198,7 +198,7 @@ class PageController extends Controller
     public function deleteGallery(Image $gallery)
     {
         $gallery->delete();
-        return redirect('/')->with('message', 'Element deleted succesfully!');
+        return redirect('/')->with('message', 'Element deleted successfully!');
     }
     public function updateGallery(Request $request, Image $image)
     {
