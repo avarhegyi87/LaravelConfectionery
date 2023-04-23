@@ -35,13 +35,11 @@ class PageController extends Controller
     public function free()
     {
         $conf = Confection::get()->load('contents', 'prices');
-        $freeids[]=0;
-        foreach ($conf as $confection){
-            foreach ($confection->contents as $value){
-                if(isset($value))
-                {
-                    if (!in_array($value->confid, $freeids))
-                    {
+        $freeids[] = 0;
+        foreach ($conf as $confection) {
+            foreach ($confection->contents as $value) {
+                if (isset($value)) {
+                    if (!in_array($value->confid, $freeids)) {
                         array_push($freeids, $value->confid);
                     }
                 }
@@ -70,6 +68,7 @@ class PageController extends Controller
     {
         return view('database.prize', ['confections' => Confection::get()]);
     }
+
     public function show(Confection $confection)
     {
         $conf = $confection->load('contents', 'prices');
@@ -79,33 +78,30 @@ class PageController extends Controller
         if ($confection->prizewinning === 1) $prize = 'yes';
 
         foreach ($confection->prices as $value) {
-
             $priceunit = $priceunit . ' price: ' . $value->price . ', with unit: ' . $value->unit . ';';
         }
+
         foreach ($confection->contents as $value) {
             $free = $value ? $free . ' ' . $value->free : null;
         }
+
         return view('database.show', ['confection' => $conf, 'free' => $free, 'prize' => $prize, 'priceunit' => $priceunit]);
     }
 
     public function edit(Confection $confection)
     {
-
         return view('database.edit', ['confection' => $confection]);
     }
 
     public function update(Request $request, Confection $confection)
     {
-
         $formFields = $request->validate([
             'cname' => 'required',
             'type' => 'required',
             'prizewinning' => 'required',
         ]);
 
-
         $confection->update($formFields);
-
 
         return back()->with('message', 'Confection updated successfully!');
     }
@@ -113,49 +109,48 @@ class PageController extends Controller
     public function blogList()
     {
         return view('blog.list', ['blogs' => Blog::orderBy('heading')->paginate(10)]);
-
     }
 
     public function blogShow(Blog $blog)
     {
         return view('blog.show', ['blog' => $blog]);
     }
-    public function editBlog(Blog $blog){
 
+    public function editBlog(Blog $blog)
+    {
         return view('blog.edit', ['blog' => $blog]);
     }
 
-    public function updateBlog(Request $request, Blog $blog){
-
+    public function updateBlog(Request $request, Blog $blog)
+    {
         $formFields = $request->validate([
-            'name'=>'required',
-            'heading'=>'required',
-            'text'=>'required',
+            'name' => 'required',
+            'heading' => 'required',
+            'text' => 'required',
         ]);
 
-
         $blog->update($formFields);
-
 
         return back()->with('message', 'Post updated successfully!');
     }
 
-    public function deleteBlog(Blog $blog){
-
+    public function deleteBlog(Blog $blog)
+    {
         $blog->delete();
         return redirect('/')->with('message', 'Blog deleted successfully!');
     }
 
-    public function createBlog(){
-
+    public function createBlog()
+    {
         return view('blog.create');
     }
 
-    public function storeBlog(Request $request){
+    public function storeBlog(Request $request)
+    {
         $formFields = $request->validate([
-            'name'=>'required',
-            'heading'=>'required',
-            'text'=>'required'
+            'name' => 'required',
+            'heading' => 'required',
+            'text' => 'required'
         ]);
 
         Blog::create($formFields);
@@ -177,10 +172,10 @@ class PageController extends Controller
     public function storeGallery(Request $request)
     {
         $formFields = $request->validate([
-            'title'=>'required'
+            'title' => 'required'
         ]);
 
-        if($request->hasFile('image'))
+        if ($request->hasFile('image'))
         {
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
@@ -205,19 +200,17 @@ class PageController extends Controller
         $gallery->delete();
         return redirect('/')->with('message', 'Element deleted succesfully!');
     }
-    public function updateGallery(Request $request, Image $image){
-
+    public function updateGallery(Request $request, Image $image)
+    {
         $formFields = $request->validate([
-            'title'=>'required'
+            'title' => 'required'
         ]);
 
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
         $image->update($formFields);
 
         return back()->with('message', 'Element updated successfully!');
     }
-
 }

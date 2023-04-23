@@ -28,6 +28,5 @@ class ContactController extends Controller
         } else {
             return redirect()->route('contact');
         }
-
     }
 }

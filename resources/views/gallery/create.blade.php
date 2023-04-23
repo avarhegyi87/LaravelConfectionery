@@ -12,8 +12,8 @@
             @csrf
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Title</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter the title..." name="title"
-                    value="{{old('title')}}" />
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter the title..."
+                    name="title" value="{{ old('title') }}" />
                 @error('title')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -23,14 +23,10 @@
                 <label for="image" class="inline-block text-lg mb-2">
                     Image
                 </label>
-                <input
-                    type="file"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="image"
-                />
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="image" />
                 @error('image')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>   
-               @enderror
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-6">
@@ -38,7 +34,7 @@
                     Create element
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="{{ route('galleryIndex') }}" class="text-black ml-4"> Back </a>
             </div>
         </form>
     </x-card>
