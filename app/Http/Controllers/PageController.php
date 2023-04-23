@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Confection;
 use App\Models\Message;
+use App\Models\Image;
 use App\Models\Blog;
-use App\Models\Gallery;
+
 
 class PageController extends Controller
 {
@@ -164,7 +165,8 @@ class PageController extends Controller
 
     public function galleryIndex()
     {
-        return view('gallery.index');
+        $gallery = Image::get();
+        return view('gallery.index', ['gallery' => $gallery]);
     }
 
     public function createGallery()
@@ -183,25 +185,39 @@ class PageController extends Controller
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
 
-        Gallery::create($formFields);
+        Image::create($formFields);
 
         return redirect('/')->with('message', 'Posted succesfully!');
     }
 
-    public function galleryShow(Gallery $gallery)
+    public function galleryShow(Image $gallery)
     {
         return view('gallery.show', ['gallery' => $gallery]);
     }
 
-    public function editGallery(Gallery $gallery)
+    public function editGallery(Image $gallery)
     {
-        return view('gallery.edit');
+        return view('gallery.edit',  ['gallery' => $gallery]);
     }
 
-    public function deleteGallery(Gallery $gallery)
+    public function deleteGallery(Image $gallery)
     {
         $gallery->delete();
         return redirect('/')->with('message', 'Element deleted succesfully!');
+    }
+    public function updateGallery(Request $request, Image $image){
+
+        $formFields = $request->validate([
+            'title'=>'required'
+        ]);
+
+        if($request->hasFile('image'))
+        {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+        $image->update($formFields);
+
+        return back()->with('message', 'Element updated succesfully!');
     }
 
 }

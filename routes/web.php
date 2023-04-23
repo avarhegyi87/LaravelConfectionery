@@ -33,7 +33,7 @@ Route::put('/database/{confection}', [PageController::class, 'update'])->name('u
 
 Route::get('/blog/list', [PageController::class, 'blogList'])->name('blogList');
 Route::get('/blog/create', [PageController::class, 'createBlog'])->name('createBlog');
-Route::post('/blog', [PageController::class, 'store'])->name('store');
+Route::post('/blog', [PageController::class, 'storeBlog'])->name('storeBlog');
 Route::get('/blog/{blog}', [PageController::class, 'blogShow'])->name('blogShow');
 Route::get('/blog/{blog}/edit', [PageController::class, 'editBlog'])->name('editBlog');
 Route::put('/blog/{blog}', [PageController::class, 'updateBlog'])->name('updateBlog');
@@ -41,8 +41,8 @@ Route::delete('/blog/{blog}', [PageController::class, 'deleteBlog'])->name('dele
 
 Route::get('/gallery', [PageController::class, 'galleryIndex'])->name('galleryIndex');
 Route::get('/gallery/create', [PageController::class, 'createGallery'])->name('createGallery');
-Route::post('/gallery', [PageController::class, 'store'])->name('store');
+Route::post('/gallery', [PageController::class, 'storeGallery'])->name('storeGallery');
 Route::get('/gallery/{gallery}', [PageController::class, 'galleryShow'])->name('galleryShow');
 Route::get('/gallery/{gallery}/edit', [PageController::class, 'editGallery'])->name('editGallery');
-Route::put('/gallery/{gallery}', [PageController::class, 'updateGallery'])->name('updateGallery');
+Route::put('/gallery/{image}', [PageController::class, 'updateGallery'])->name('updateGallery');
 Route::delete('/gallery/{gallery}', [PageController::class, 'deleteGallery'])->name('deleteGallery');
