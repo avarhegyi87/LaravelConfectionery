@@ -1,8 +1,11 @@
 @extends('template')
 
 @section('content')
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/form-validation.js') }}"></script>
     <div>
-        <form method="post" action="contact">
+        <form id="contactform" method="post" action="contact">
             @csrf
 
             <div class="grid md:grid-cols-2 md:gap-6">
@@ -37,7 +40,7 @@
                     <label for="message" class="sr-only">Your comment</label>
                     <textarea id="message" name="message" rows="4"
                         class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                        required placeholder="Write a comment..."></textarea>
+                        placeholder="Write a comment..."></textarea>
                 </div>
             </div>
             @error('message')
@@ -45,8 +48,8 @@
                     {{ $message }}
                 </p>
             @enderror
-            <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send
+            <button type="submit" id="submitMessage"
+                class="text-white bg-blue-700 disabled:bg-gray-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send
                 Message</button>
         </form>
     </div>
