@@ -12,8 +12,8 @@
             @csrf
             <div class="mb-6">
                 <label for="heading" class="inline-block text-lg mb-2">Heading</label>
-                <input type="textarea" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter the title..." name="heading"
-                    value="{{old('heading') }}" />
+                <input type="textarea" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter the title..."
+                    name="heading" value="{{ old('heading') }}" />
                 @error('heading')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -21,7 +21,8 @@
 
             <div class="mb-6">
                 <label for="text" class="inline-block text-lg mb-2">Text</label>
-                <textarea class="border border-gray-200 rounded p-2 w-full" rows="10" cols="100" placeholder="Enter the text..." name="text"></textarea>
+                <textarea class="border border-gray-200 rounded p-2 w-full" rows="10" cols="100"
+                    placeholder="Enter the text..." name="text"></textarea>
                 @error('text')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -29,8 +30,8 @@
 
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">Author name:</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter your name..." name="name"
-                value="{{ old('name')}}" />
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" placeholder="Enter your name..."
+                    name="name" value="{{ old('name') }}" />
                 @error('name')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
