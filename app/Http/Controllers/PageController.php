@@ -137,7 +137,7 @@ class PageController extends Controller
     public function deleteBlog(Blog $blog)
     {
         $blog->delete();
-        return redirect('/')->with('message', 'Blog deleted successfully!');
+        return redirect('/blog/list')->with('message', 'Blog deleted successfully!');
     }
 
     public function createBlog()
@@ -155,7 +155,7 @@ class PageController extends Controller
 
         Blog::create($formFields);
 
-        return redirect('/')->with('message', 'Posted successfully!');
+        return redirect('/blog/list')->with('message', 'Posted successfully!');
     }
 
     public function galleryIndex()
@@ -182,7 +182,7 @@ class PageController extends Controller
 
         Image::create($formFields);
 
-        return redirect('/')->with('message', 'Posted successfully!');
+        return redirect('/gallery')->with('message', 'Posted successfully!');
     }
 
     public function galleryShow(Image $gallery)
@@ -198,7 +198,7 @@ class PageController extends Controller
     public function deleteGallery(Image $gallery)
     {
         $gallery->delete();
-        return redirect('/')->with('message', 'Element deleted successfully!');
+        return redirect('/gallery')->with('message', 'Element deleted successfully!');
     }
     public function updateGallery(Request $request, Image $image)
     {
