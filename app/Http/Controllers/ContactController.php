@@ -14,7 +14,7 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => ['required', 'min:3', 'max:60'],
             'email' => ['required', 'email', 'min:8'],
-            'message' => ['required', 'min:3', 'max:1000'],
+            'message' => ['required', 'min:3', 'max:500'],
         ]);
 
         $msg = new Message();
