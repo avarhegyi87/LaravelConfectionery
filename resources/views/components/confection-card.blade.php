@@ -5,9 +5,7 @@ if ($confection->prizewinning == 1) {
 }
 ?>
 <x-card>
-
     <div class="flex">
-
         <div>
             <h3 class="text-2xl">
                 <a href="/database/{{ $confection->id }}">{{ $confection->cname }}</a>

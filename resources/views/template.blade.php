@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=berkshire-swash:400|cormorant-upright:300,400,500,600,700" rel="stylesheet" />
 
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -35,9 +35,9 @@
 
 </head>
 
-<body class="ml-12 mr-12 ">
+<body>
     @include('_includes.nav.topnav')
-    <div class="mb-24">
+    <div class="content mb-24 mx-12">
         @yield('content')
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"

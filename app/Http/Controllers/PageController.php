@@ -23,13 +23,13 @@ class PageController extends Controller
 
     public function messageBoard()
     {
-        $messages = Message::orderBy('created_at', 'desc')->paginate(5);
+        $messages = Message::orderBy('created_at', 'desc')->paginate(10);
         return view('messageboard')->with('messages', $messages);
     }
 
     public function all()
     {
-        return view('database.all', ['confections' => Confection::orderBy('cname')->paginate(10)]);
+        return view('database.all', ['confections' => Confection::orderBy('cname')->paginate(12)]);
     }
 
     public function free()
@@ -103,7 +103,7 @@ class PageController extends Controller
 
         $confection->update($formFields);
 
-        return back()->with('message', 'Confection updated successfully!');
+        return redirect('/database/all')->with('message', 'Confection updated successfully!');
     }
 
     public function blogList()
@@ -131,7 +131,7 @@ class PageController extends Controller
 
         $blog->update($formFields);
 
-        return back()->with('message', 'Post updated successfully!');
+        return redirect('/blog/list')->with('message', 'Post updated successfully!');
     }
 
     public function deleteBlog(Blog $blog)

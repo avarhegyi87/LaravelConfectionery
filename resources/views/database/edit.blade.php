@@ -3,7 +3,7 @@
 @section('content')
     <x-card class="p-10 rounded max-w-lg mx-auto mt-24">
         <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1">
+            <h2 class="text-3xl font-semibold text-center mb-8">
                 Edit Confection
             </h2>
             <p class="mb-4">Edit: {{ $confection->cname }}</p>

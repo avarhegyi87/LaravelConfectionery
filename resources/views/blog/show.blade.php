@@ -7,7 +7,7 @@
         <x-card class="p-10">
             <div class="flex flex-col items-center justify-center text-center">
                 <h3 class="text-2xl font-bold mb-2">{{ $blog->heading }}</h3>
-                <div class="text-xl font-bold mb-4">{{ $blog->text }}</div>
+                <div class="text-lg font-bold mb-4">{{ $blog->text }}</div>
                 <div class="text-lg my-4">Written by: {{ $blog->name }}</div>
             </div>
         </x-card>
